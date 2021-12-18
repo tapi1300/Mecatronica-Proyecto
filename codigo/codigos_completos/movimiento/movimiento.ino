@@ -65,24 +65,24 @@ void loop() {
 
   if(turn)
   {
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    digitalWrite(LED_BUILTIN, HIGH);
   }
   else{
-    digitalWrite(LED_BUILTIN, LOW);   // turn the LED on (HIGH is the voltage level)
+    digitalWrite(LED_BUILTIN, LOW);
   }
   
   if (turn){
     if (abs(millis()-time_init) < 500){
       if (sens_detect == 1){
-        myservoD.write(0);
+        myservoD.write(0);  // GIRO DERECHA
         myservoI.write(0);
       }
       else if (sens_detect == 2) {
-        myservoD.write(0);
+        myservoD.write(0); // GIRO DERECHA
         myservoI.write(0);
       }
       else if (sens_detect == 3) {
-        myservoD.write(180);
+        myservoD.write(180); // GIRO IZQUIERDA
         myservoI.write(180);
       }
     }
@@ -117,10 +117,6 @@ void loop() {
       // SI HAY OBSTACULO ATACAMOS
       if(free_path == US_DETECTED) // HAY OBSTACULO
       {
-        Serial.print("Distancia: ");
-        Serial.print(dist);
-        Serial.print("cm");
-        Serial.println();
         myservoD.write(180);
         myservoI.write(0);
       }
