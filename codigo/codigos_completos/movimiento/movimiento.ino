@@ -23,6 +23,9 @@ Servo myservoI;
 
 void setup() {
   Serial.begin(9600);
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  
   myservoD.attach(pin_rueda_DER);
   myservoI.attach(pin_rueda_IZQ);
 
@@ -55,10 +58,19 @@ void loop() {
   dist = time_eco/59;
 
   int free_path = 0;
-  if(dist < 11)
+  if(dist < 20)
   {
     free_path = 1;
   }
+
+  if(turn)
+  {
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  }
+  else{
+    digitalWrite(LED_BUILTIN, LOW);   // turn the LED on (HIGH is the voltage level)
+  }
+  
   if (turn){
     if (abs(millis()-time_init) < 500){
       if (sens_detect == 1){
